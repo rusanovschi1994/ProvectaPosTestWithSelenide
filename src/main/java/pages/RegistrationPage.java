@@ -17,11 +17,11 @@ public class RegistrationPage {
     private final By confirmPasswordField = By.xpath("//input[@name=\"passwordConfirm\"]");
     private final By promoCodeField = By.cssSelector("input#promocode");
     private final By registrationButton = By.xpath("//button[@type=\"submit\"]");
+    private final By languageDropDown = By.xpath("//a[@class=\"dropdown-toggle\"]/parent::li");
     private String languageOption =
             "//a[@class=\"dropdown-toggle\"]/following-sibling::ul//a[normalize-space()=\"%s\"]";
     private String errorByText = "//em[text()=\"%s\"]";
-    private By languageDropDown = By.xpath("//a[@class=\"dropdown-toggle\"]/parent::li");
-    private By errors = By.xpath("//em[@for]");
+    private final By errors = By.xpath("//em[@for]");
 
     public RegistrationPage open(){
 

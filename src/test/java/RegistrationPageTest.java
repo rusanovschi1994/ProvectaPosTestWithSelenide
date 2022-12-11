@@ -24,7 +24,7 @@ public class RegistrationPageTest {
         page = new RegistrationPage();
         page
                 .open()
-                .selectLanguage("română")
+                .selectLanguage("English")
                 .typeEmailAddress("test@test.test")
                 .typePassword("test")
                 .typeConfirmPassword("test")
