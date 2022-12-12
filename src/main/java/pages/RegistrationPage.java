@@ -1,10 +1,12 @@
 package pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static java.lang.String.*;
@@ -31,7 +33,9 @@ public class RegistrationPage {
 
     public RegistrationPage typeCompanyName(String name){
 
-        $(companyNameField).setValue(name);
+        $(companyNameField)
+                .shouldBe(visible)
+                .setValue(name);
         return this;
     }
 

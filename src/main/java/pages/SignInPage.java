@@ -1,10 +1,13 @@
 package pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
+import pages.back.DashboardPage;
 
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static java.lang.String.*;
@@ -22,6 +25,7 @@ public class SignInPage {
             "//a[@class=\"dropdown-toggle\"]/following-sibling::ul//a[normalize-space()=\"%s\"]";
     private String errorByText = "//em[text()=\"%s\"]";
     private final By errors = By.xpath("//em[@class=\"invalid ng-isolate-scope\"]");
+    private final By headerText = By.xpath("//span[text()=\"Sign In\"]");
 
     public SignInPage open(){
 
@@ -37,13 +41,16 @@ public class SignInPage {
 
     public SignInPage typeUsername(String username){
 
-        $(usernameField).setValue(username);
+        $(usernameField)
+                .shouldBe(visible)
+                .setValue(username);
         return this;
     }
 
     public SignInPage typePassword(String password){
 
-        $(passwordField).setValue(password);
+        $(passwordField)
+                .setValue(password);
         return this;
     }
 
@@ -58,15 +65,25 @@ public class SignInPage {
 
     public SignInPage selectLanguage(String option){
 
-        $(languageDropDown).click();
-        $(By.xpath(format(languageOption, option))).click();
+        $(languageDropDown)
+                .shouldBe(visible)
+                .click();
+        $(By.xpath(format(languageOption, option)))
+                .click();
         return this;
     }
 
-    public void clickSignInButton(){
+    public SignInPage getHeaderText(){
+
+        $(headerText);
+        return this;
+    }
+
+    public DashboardPage clickSignInButton(){
 
         $(signInButton).click();
         //temporary nothing return
+        return new DashboardPage();
     }
 
     public ElementsCollection getErrors(){
