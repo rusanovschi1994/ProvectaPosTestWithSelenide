@@ -17,7 +17,7 @@ public class DashboardPage {
 
     public DashboardPage open(){
 
-        Selenide.open();
+        Selenide.open("/");
         return this;
     }
 

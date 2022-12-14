@@ -19,7 +19,7 @@ public class SignInPageTest {
     @BeforeClass
     public static void setUp(){
 
-        Configuration.timeout = 6000;
+        Configuration.timeout = 10000;
 
         System.setProperty("webdriver.chrome.driver", "C:\\drivers\\selenium\\chromedriver.exe");
         baseUrl = "https://provectapos.com/app/#/login";

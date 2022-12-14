@@ -1,46 +1,47 @@
-package back_test;
+package back_tests.mycompany;
 
-import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import pages.SignInPage;
-import pages.back.DashboardPage;
+import pages.back.mycompany.MyCompanyPage;
 
 import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Configuration.*;
 
-public class DashboardPageTest {
+public class MyCompanyPageTest {
 
-    private DashboardPage dashboardPage;
+    private MyCompanyPage myCompanyPage;
     private SignInPage signInPage;
 
     @BeforeClass
     public static void setUp(){
 
         System.setProperty("webdriver.chrome.driver", "C:\\drivers\\selenium\\chromedriver.exe");
-        baseUrl = "https://provectapos.com/app/#/dashboard";
+        baseUrl = "https://provectapos.com/app/#/login";
         browser = "chrome";
-        timeout = 6000;
+        timeout = 8000;
     }
 
     @Test
-    public void checkDashboardHeader(){
+    public void checkMyCompanyInPresenceOfOptions(){
 
         signInPage = new SignInPage();
-        dashboardPage = new DashboardPage();
+        myCompanyPage = new MyCompanyPage();
+
         signInPage
                 .open()
-                .selectLanguage("English")
                 .typeUsername("rusanovschi1994@mail.ru")
                 .typePassword("Micr0invest")
-                .setRememberMe(true)
                 .clickSignInButton();
-
-        dashboardPage
-                .getHeaderByText("Dashboard")
+        myCompanyPage
+                .clickMyCompany();
+        myCompanyPage
+                .getMyCompanyOptions().shouldHave(size(5));
+        myCompanyPage
+                .getMyCompanyOptionByNumber(3).shouldHave(text("Settings"));
+        myCompanyPage
+                .getMyCompanyOptionByText("Branches")
                 .shouldBe(visible);
     }
 }
